@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/countdown-latch" prefix="countdown-latch">
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="CountDown Latch" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="CountDown Latch: CountDownLatch-Configuration" description="Global CountDownLatch-Configuration configuration information. Connector Configuration provide an application name for
+which count down latch would be created." icon="icons/small/countdown-latch-connector-24x16.png" localId="config" image="icons/large/countdown-latch-connector-48x32.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/countdown-latch/parentConfig" connectivityTesting="off" metaData="static" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="Countdown-latch configuration properties.">
+      <group id="countdown-latchGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <string name="applicationName" caption="Application Name or Id" description="Provide an appication name for which count down latch would be created." supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+        <integer defaultValue="30" min="0" step="1" name="maxLatchAwaitTime" caption="Max Latch Await Time" description="Maximum time for which latch will wait for the count downs to reach zero? Default is 15 minutes." supportsExpressions="false" required="false" javaType="long"></integer>
+        <enum defaultValue="MINUTES" allowsCustom="true" name="timeUnit" caption="Time Unit" description="Default time unit to wait for the latch to count down to zero? Default is 15 minutes." supportsExpressions="false" required="false" javaType="java.util.concurrent.TimeUnit">
+          <option value="DAYS"></option>
+          <option value="HOURS"></option>
+          <option value="MICROSECONDS"></option>
+          <option value="MILLISECONDS"></option>
+          <option value="MINUTES"></option>
+          <option value="NANOSECONDS"></option>
+          <option value="SECONDS"></option>
+        </enum>
+        <boolean defaultValue="true" name="logLatchCountDowns" caption="Log Latch Count Down Number" description="If enabled, logs the count down number of the latch." supportsExpressions="false" required="false" javaType="boolean"></boolean>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractcountdown-latchconnectorgeneric" description="Interact with Countdown-latch." icon="icons/small/countdown-latch-connector-24x16.png" localId="abstractCountdown-latchConnectorGeneric" image="icons/large/countdown-latch-connector-48x32.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractCountdown-latchConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/countdown-latch/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.6.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.countdown-latch" caption="CountDown Latch" description="Mule Module CountdownLatch" icon="icons/small/countdown-latch-connector-24x16.png" localId="countdown-latch-connector" image="icons/large/countdown-latch-connector-48x32.png" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="countdown-latchConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Countdown-latch operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" versions="[3.6.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/countdown-latch/await" modeLabel="Await"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/countdown-latch/count-down" modeLabel="Count down"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/countdown-latch/create" modeLabel="Create"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/countdown-latch/get-available-counts" modeLabel="Get available counts"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/countdown-latch/reset" modeLabel="Reset"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Await" icon="icons/small/countdown-latch-connector-24x16.png" localId="await" image="icons/large/countdown-latch-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="latchName" caption="Latch Name" description="- the name of the Latch on which to count down." required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Count Down" icon="icons/small/countdown-latch-connector-24x16.png" localId="count-down" image="icons/large/countdown-latch-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="latchName" caption="Latch Name" description="- the name of the Latch on which to count down." required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Create" icon="icons/small/countdown-latch-connector-24x16.png" localId="create" image="icons/large/countdown-latch-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="latchName" caption="Latch Name" description="- the name of the Latch. Once created, the latch can be referenced by this name later in the app flows." required="true" javaType="java.lang.String"></string>
+        <integer min="0" step="1" name="totalCounts" caption="Total Counts" description="- the total counts of the latch. This is the values from which the latch counts down." required="true" javaType="int"></integer>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="long" caption="Get Available Counts" icon="icons/small/countdown-latch-connector-24x16.png" localId="get-available-counts" image="icons/large/countdown-latch-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="latchName" caption="Latch Name" description="- the name of the Latch on which to count down." required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Reset" icon="icons/small/countdown-latch-connector-24x16.png" localId="reset" image="icons/large/countdown-latch-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/countdown-latch/abstractCountdown-latchConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="latchName" caption="Latch Name" description="- the name of the Latch. Once created, the latch can be referenced by this name later in the app flows." required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>

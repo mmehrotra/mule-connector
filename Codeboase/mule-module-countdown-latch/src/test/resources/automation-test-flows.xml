@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:countdown-latch="http://www.mulesoft.org/schema/mule/countdown-latch" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.mulesoft.org/schema/mule/countdown-latch http://www.mulesoft.org/schema/mule/countdown-latch/current/mule-countdown-latch.xsd"
+>
+
+<context:property-placeholder location="automation-credentials.properties" />
+
+<countdown-latch:config logLatchCountDowns="${countdown-latch.logLatchCountDowns}" timeUnit="${countdown-latch.timeUnit}" applicationName="${countdown-latch.applicationName}" maxLatchAwaitTime="${countdown-latch.maxLatchAwaitTime}" name="Countdown-latch" doc:name="Countdown-latch"></countdown-latch:config>
+
+<flow name="create" doc:name="Create">
+	<countdown-latch:create config-ref="Countdown-latch" latchName="#[flowVars.latchName]"  totalCounts="#[flowVars.totalCounts]" />
+</flow>
+
+<flow name="count-down" doc:name="CountDown">
+	<countdown-latch:count-down config-ref="Countdown-latch" latchName="#[flowVars.latchName]" />
+</flow>
+
+<flow name="await" doc:name="Await">
+	<countdown-latch:await config-ref="Countdown-latch" latchName="#[flowVars.latchName]" />
+</flow>
+
+
+</mule>

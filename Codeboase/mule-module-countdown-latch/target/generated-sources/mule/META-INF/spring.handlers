@@ -1,0 +1,1 @@
+http\://www.mulesoft.org/schema/mule/countdown-latch=com.ralphlauren.mule.modules.countdownlatch.config.CountdownLatchNamespaceHandler

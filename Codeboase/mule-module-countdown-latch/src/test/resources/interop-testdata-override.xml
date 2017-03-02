@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connector name="CountDown Latch">
+    <properties>
+        <connectivity-support>false</connectivity-support>
+        <OAuth-authentication>false</OAuth-authentication>
+        <metadata>static</metadata>
+        <datasense-enabled>true</datasense-enabled>
+        <transformer>false</transformer>
+    </properties>
+    <global-config credentialsFile="">
+        <config name="config">
+            <attributes>
+                <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="applicationName" use="required" caption="Application Name or Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+        </config>
+    </global-config>
+    <message-processors>
+        <processor name="create" xmlName="create" caption="Create">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="latchName" use="required" caption="Latch Name" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="totalCounts" use="required" caption="Total Counts" group="General" type="integer" javaType="int" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="countDown" xmlName="count-down" caption="Count down">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="latchName" use="required" caption="Latch Name" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="await" xmlName="await" caption="Await">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="latchName" use="required" caption="Latch Name" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="getAvailableCounts" xmlName="get-available-counts" caption="Get available counts">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="latchName" use="required" caption="Latch Name" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+    </message-processors>
+</connector>
