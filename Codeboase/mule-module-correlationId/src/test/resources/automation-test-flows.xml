@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:CorrelationId="http://www.mulesoft.org/schema/mule/CorrelationId" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.mulesoft.org/schema/mule/CorrelationId http://www.mulesoft.org/schema/mule/CorrelationId/current/mule-CorrelationId.xsd"
+>
+
+<context:property-placeholder location="automation-credentials.properties" />
+
+<CorrelationId:config applicationName="${CorrelationId.applicationName}" name="CorrelationId" doc:name="CorrelationId"></CorrelationId:config>
+
+<flow name="add-or-update" doc:name="AddOrUpdate">
+	<CorrelationId:add-or-update config-ref="CorrelationId"/>
+</flow>
+
+<flow name="remove" doc:name="Remove">
+	<CorrelationId:remove config-ref="CorrelationId"/>
+</flow>
+
+
+</mule>

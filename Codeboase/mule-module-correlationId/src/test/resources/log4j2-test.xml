@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5p %d [%t] %c: %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+
+		<!-- CXF is used heavily by Mule for web services -->
+		<Logger name="org.apache.cxf" level="WARN" />
+
+		<!-- Apache Commons tend to make a lot of noise which can clutter the log -->
+		<Logger name="org.apache" level="WARN" />
+
+		<!-- Reduce startup noise -->
+		<Logger name="org.springframework.beans.factory" level="WARN" />
+
+		<!-- Mule classes -->
+		<Logger name="org.mule" level="INFO" />
+		<Logger name="com.mulesoft" level="INFO" />
+
+		<!-- Reduce DM verbosity -->
+		<Logger name="org.jetel" level="WARN" />
+		<Logger name="Tracking" level="WARN" />
+
+		<Logger name="httpclient.wire" level="WARN" />
+		
+		<Logger name="mule.module.logger.tests.category" level="DEBUG" />
+
+		<Root level="debug">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

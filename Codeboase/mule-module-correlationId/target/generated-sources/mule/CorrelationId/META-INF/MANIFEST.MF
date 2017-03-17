@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mule Module CorrelationId
+Bundle-SymbolicName: org.mule.tooling.ui.contribution.CorrelationId.3.6.0;singleton:=true
+Bundle-Version: 1.2.0.201701301454
+Bundle-Activator: org.mule.tooling.ui.contribution.CorrelationidActivator
+Bundle-Vendor: vwali
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.mule.tooling.core;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir

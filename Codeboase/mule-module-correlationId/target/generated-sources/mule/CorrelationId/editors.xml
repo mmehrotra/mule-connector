@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/CorrelationId" prefix="CorrelationId">
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="Mule Module CorrelationId" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/CorrelationId/abstractCorrelationIdConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="Mule Module CorrelationId: CorrelationId-Configuration" description="Global CorrelationId-Configuration configuration information. This class is responsible to Provide an application name
+for which correlation id would be generated." icon="icons/small/CorrelationId-connector-24x16.png" localId="config" image="icons/large/CorrelationId-connector-48x32.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/CorrelationId/parentConfig" connectivityTesting="off" metaData="static" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="CorrelationId configuration properties.">
+      <group id="CorrelationIdGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <string name="applicationName" caption="Application Name or Id" description="Provide an appication name for which correlation id would be generated." supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractcorrelationidconnectorgeneric" description="Interact with CorrelationId." icon="icons/small/CorrelationId-connector-24x16.png" localId="abstractCorrelationIdConnectorGeneric" image="icons/large/CorrelationId-connector-48x32.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractCorrelationIdConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/CorrelationId/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.6.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.CorrelationId" caption="Mule Module CorrelationId" description="Mule Module to generate cluster safe CorrelationId for flows." icon="icons/small/CorrelationId-connector-24x16.png" localId="CorrelationId-connector" image="icons/large/CorrelationId-connector-48x32.png" extends="http://www.mulesoft.org/schema/mule/CorrelationId/abstractCorrelationIdConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="CorrelationIdConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="CorrelationId operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/CorrelationId/abstractCorrelationIdConnectorGeneric" versions="[3.6.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/CorrelationId/add-or-update" modeLabel="Add or update"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/CorrelationId/remove" modeLabel="Remove"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Add Or Update" icon="icons/small/CorrelationId-connector-24x16.png" localId="add-or-update" image="icons/large/CorrelationId-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/CorrelationId/abstractCorrelationIdConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General."></attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Remove" icon="icons/small/CorrelationId-connector-24x16.png" localId="remove" image="icons/large/CorrelationId-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/CorrelationId/abstractCorrelationIdConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General."></attribute-category>
+  </cloud-connector>
+</namespace>
