@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/logger2" prefix="logger2">
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="Logger2" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/logger2/abstractLogger2ConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.6.0,8.0.0]" caption="Logger2: Logger-Configuration" description="Global Logger-Configuration configuration information. ConnectorConfig provide an application
+name to log as part of standard logging." icon="icons/small/logger2-connector-24x16.png" localId="config" image="icons/large/logger2-connector-48x32.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/logger2/parentConfig" connectivityTesting="off" metaData="static" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="Logger2 configuration properties.">
+      <group id="logger2GenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <string name="applicationName" caption="Application Name or Id" description="Provide an appication name to log as part of standard logging." supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+        <string name="loggerCategory" caption="Logger Category" description="Provide a logger category against which logging would be done." supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+        <boolean defaultValue="true" name="logCorrelationId" caption="Log Correlation Id?" description="If enabled, #[message.correlationId] is logged in log messages." supportsExpressions="false" required="false" javaType="boolean"></boolean>
+        <boolean defaultValue="true" name="logMessageId" caption="Log Message Id?" description="If enabled, #[message.id] is logged in log messages." supportsExpressions="false" required="false" javaType="boolean"></boolean>
+        <boolean defaultValue="true" name="skipMissingCorrelationId" caption="Skip Correlation Id if its not available?" description="If enabled, #[message.correlationId] is logged only when its available in message. This property has no effect if 'Enable Correlation Id logging?' is disabled." supportsExpressions="false" required="false" javaType="boolean"></boolean>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractlogger2connectorgeneric" description="Interact with Logger2." icon="icons/small/logger2-connector-24x16.png" localId="abstractLogger2ConnectorGeneric" image="icons/large/logger2-connector-48x32.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractLogger2ConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/logger2/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.6.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.logger2" caption="Logger2" description="Enhanced Mule Logger Module with standardized log message formats." icon="icons/small/logger2-connector-24x16.png" localId="logger2-connector" image="icons/large/logger2-connector-48x32.png" extends="http://www.mulesoft.org/schema/mule/logger2/abstractLogger2ConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="logger2ConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Logger2 operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/logger2/abstractLogger2ConnectorGeneric" versions="[3.6.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/logger2/log-error" modeLabel="Log error"></mode>
+          <mode modeId="http://www.mulesoft.org/schema/mule/logger2/log-message" modeLabel="Log message"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Log Error" icon="icons/small/logger2-connector-24x16.png" localId="log-error" image="icons/large/logger2-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/logger2/abstractLogger2ConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="errorCode" caption="Error Code" description="Is the system error code created by ESB. Error codes range from DSB1001 to DSBxxxx." required="true" javaType="java.lang.String"></string>
+        <string name="logMessage" caption="Log Message" description="Is the message to log. This can include MEL expressions as well." required="true" javaType="java.lang.String"></string>
+        <string name="processType" caption="Process Type" description="Name of the flow or process which originated the message. Incase the originator of the log message is a sub-flow, its parent flow is recorded as the process type." required="false" javaType="java.lang.String"></string>
+        <boolean defaultValue="true" name="logException" caption="Log Exception" description="Boolean choice to log the exception or not. Default value is true." supportsExpressions="true" required="false" javaType="boolean"></boolean>
+        <boolean defaultValue="false" name="logPayload" caption="Log Payload" description="Boolean choice to log the payload or not." supportsExpressions="true" required="false" javaType="boolean"></boolean>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" caption="Log Message" icon="icons/small/logger2-connector-24x16.png" localId="log-message" image="icons/large/logger2-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/logger2/abstractLogger2ConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="logMessage" caption="Log Message" description="The message to log. This can include MEL expressions as well." required="true" javaType="java.lang.String"></string>
+        <string name="processType" caption="Process Type" description="Name of the flow or process which originated the message. Incase the originator of the log message is a sub-flow, its parent flow is recorded as the process type." required="false" javaType="java.lang.String"></string>
+        <enum defaultValue="INFO" allowsCustom="true" name="logLevel" caption="Log Level" description="A type of  is expected. Strings are also accepted as long as they are either ,  , , . Default value is." supportsExpressions="true" required="false" javaType="com.ralphlauren.mule.modules.logger.LogLevelEnum">
+          <option value="DEBUG"></option>
+          <option value="INFO"></option>
+          <option value="TRACE"></option>
+          <option value="WARN"></option>
+        </enum>
+        <boolean defaultValue="false" name="logPayload" caption="Log Payload" description="Boolean choice to log the payload or not." supportsExpressions="true" required="false" javaType="boolean"></boolean>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>

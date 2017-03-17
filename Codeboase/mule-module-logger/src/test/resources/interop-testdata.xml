@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connector name="Logger2">
+    <properties>
+        <connectivity-support>false</connectivity-support>
+        <OAuth-authentication>false</OAuth-authentication>
+        <metadata>static</metadata>
+        <datasense-enabled>true</datasense-enabled>
+        <transformer>false</transformer>
+    </properties>
+    <global-config credentialsFile="">
+        <config name="config">
+            <attributes>
+                <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="applicationName" use="required" caption="Application Name or Id" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="loggerCategory" use="required" caption="Logger Category" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="logMessageId" use="optional" caption="Log Message Id?" group="General" type="boolean" javaType="boolean" default="true" category="General"></attribute>
+                <attribute name="logCorrelationId" use="optional" caption="Log Correlation Id?" group="General" type="boolean" javaType="boolean" default="true" category="General"></attribute>
+                <attribute name="skipMissingCorrelationId" use="optional" caption="Skip Correlation Id if its not available?" group="General" type="boolean" javaType="boolean" default="true" category="General"></attribute>
+            </attributes>
+        </config>
+    </global-config>
+    <message-processors>
+        <processor name="logMessage" xmlName="log-message" caption="Log message">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="logLevel" use="optional" caption="Log Level" group="General" type="enum" javaType="org.mule.modules.logger.LogLevelEnum" default="INFO" category="General"></attribute>
+                <attribute name="logMessage" use="required" caption="Log Message" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="logPayload" use="optional" caption="Log Payload" group="General" type="boolean" javaType="boolean" default="false" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+        <processor name="logError" xmlName="log-error" caption="Log error">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="logMessage" use="required" caption="Log Message" group="General" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="logException" use="optional" caption="Log Exception" group="General" type="boolean" javaType="boolean" default="true" category="General"></attribute>
+                <attribute name="logPayload" use="optional" caption="Log Payload" group="General" type="boolean" javaType="boolean" default="false" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+    </message-processors>
+</connector>

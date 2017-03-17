@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:logger2="http://www.mulesoft.org/schema/mule/logger2" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.mulesoft.org/schema/mule/logger2 http://www.mulesoft.org/schema/mule/logger2/current/mule-logger2.xsd"
+>
+
+<context:property-placeholder location="automation-credentials.properties" />
+
+<logger2:config logCorrelationId="${logger2.logCorrelationId}" applicationName="${logger2.applicationName}" logMessageId="${logger2.logMessageId}" skipMissingCorrelationId="${logger2.skipMissingCorrelationId}" loggerCategory="${logger2.loggerCategory}" name="Logger2" doc:name="Logger2"></logger2:config>
+
+<flow name="log-message" doc:name="LogMessage">
+	<logger2:log-message config-ref="Logger2" logMessage="#[flowVars.logMessage]" />
+</flow>
+
+<flow name="log-error" doc:name="LogError">
+	<logger2:log-error config-ref="Logger2" logMessage="#[flowVars.logMessage]"  errorCode="#[flowVars.errorCode]" />
+</flow>
+
+
+</mule>
